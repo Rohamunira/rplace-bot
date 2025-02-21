@@ -37,7 +37,7 @@ with sync_playwright() as p:
             page.keyboard.press("ArrowUp")
         elif coords[1] == target_coords[1] and coords[0] == target_coords[0]:
             break
-    list_color = numpy.array([
+    list_color = [
         (0, 0, 0),
         (105, 105, 105),
         (85, 85, 85),
@@ -63,7 +63,8 @@ with sync_playwright() as p:
         (255, 153, 0),
         (255, 230, 0),
         (87, 52, 0)
-    ])
+    ]
+    page.locator("xpath=//html/body/div[2]/button[2]").click()
     for color in pixels:
         ranges_tmp = float("inf")
         for colors in list_color:
@@ -74,7 +75,6 @@ with sync_playwright() as p:
                 elist_color = page.locator("xpath=//html/body/div[2]/div[10]/div[1]/div[2]")
                 elist_color.locator(f"[data-index={numpy.where(list_color == similar_color)}]").click()
                 break
-    page.locator("xpath=//html/body/div[2]/button[2]").click()
     time.sleep(300)
     page.close()
     context.close()

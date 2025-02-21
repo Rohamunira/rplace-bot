@@ -31,17 +31,18 @@ checks = numpy.array((73, 253, 90))
 difference = []
 for lc in list_color:
     difference.append([
-        _ if (_ := int(lc[0] - checks[0])) > 0 else 0,
-        _ if (_ := int(lc[1] - checks[0])) > 0 else 0,
-        _ if (_ := int(lc[2] - checks[0])) > 0 else 0,
-        # int(lc[0] - checks[0]),
-        # int(lc[1] - checks[1]),
-        # int(lc[2] - checks[2])
+        # _ if (_ := int(lc[0] - checks[0])) > 0 else 0,
+        # _ if (_ := int(lc[1] - checks[0])) > 0 else 0,
+        # _ if (_ := int(lc[2] - checks[0])) > 0 else 0,
+        int(lc[0] - checks[0]),
+        int(lc[1] - checks[1]),
+        int(lc[2] - checks[2])
     ])
 difference = numpy.array(difference)
 avg = numpy.vectorize(int)(numpy.mean(difference, axis = 1))
 difference = zip(difference, avg, list_color)
-difference = sorted(difference, key = lambda x: x[1])
+
+# difference = sorted(difference, key = lambda x: x[1]) # sorting based index 1
 
 for e in difference:
     print(e)

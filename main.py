@@ -36,7 +36,9 @@ with sync_playwright() as p:
             page.keyboard.press("ArrowUp")
         elif coords[1] == target_coords[1] and coords[0] == target_coords[0]:
             break
-
+    for color in pixels:
+        pass
+    page.locator("xpath=//html/body/div[2]/button[2]").click()
     time.sleep(300)
     page.close()
     context.close()

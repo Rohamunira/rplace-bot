@@ -27,13 +27,13 @@ with sync_playwright() as p:
     while True:
         coords = eval(page.locator("xpath=//html/body/div[2]/div[2]").text_content().split(" ")[0])
         if coords[0] < target_coords[0]:
-            page.keyboard.press("ArrowLeft")
-        elif coords[0] > target_coords[0]:
             page.keyboard.press("ArrowRight")
+        elif coords[0] > target_coords[0]:
+            page.keyboard.press("ArrowLeft")
         if coords[1] < target_coords[1]:
-            page.keyboard.press("ArrowUp")
-        elif coords[1] > target_coords[1]:
             page.keyboard.press("ArrowDown")
+        elif coords[1] > target_coords[1]:
+            page.keyboard.press("ArrowUp")
         elif coords[1] == target_coords[1] and coords[0] == target_coords[0]:
             break
 

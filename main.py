@@ -10,6 +10,7 @@ import collections
 img = PIL.Image.open("samples.png") # select png
 img = img.convert("RGB") # change image to RGB format
 pixels = img.getdata()
+target_coords = [200, 200]
 # for color in pixels:
 #     rgb2hex = "#{:02x}{:02x}{:02x}".format(color[0], color[1], color[2]) # testings
 with sync_playwright() as p:
@@ -24,7 +25,7 @@ with sync_playwright() as p:
 
     # go to specified coords first
     while True:
-        print(page.locator("xpath=//html/body/div[2]/div[2]").text_content())
+        print(eval(page.locator("xpath=//html/body/div[2]/div[2]").text_content().split(" ")[0]))
         # if 
 
     time.sleep(300)

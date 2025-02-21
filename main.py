@@ -7,6 +7,7 @@ import PIL
 import PIL.Image
 import time
 import collections
+# import *
 img = PIL.Image.open("samples.png") # select png
 img = img.convert("RGB") # change image to RGB format
 pixels = img.getdata()

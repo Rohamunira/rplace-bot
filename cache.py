@@ -1,7 +1,10 @@
+import PIL
+import PIL.Image
 import numpy
 import math
+import matplotlib
 import cv2
-list_color = numpy.array([
+list_color = [
     (0, 0, 0),
     (105, 105, 105),
     (85, 85, 85),
@@ -27,16 +30,27 @@ list_color = numpy.array([
     (255, 153, 0),
     (255, 230, 0),
     (87, 52, 0)
-])
-similar_color = None
-ranges_tmp = float("inf")
-checks = numpy.array((73, 253, 90))
-for c in list_color:
-    new_ranges = cv2.norm(c, checks, cv2.NORM_L2)
-    if new_ranges < ranges_tmp:
-        ranges_tmp = new_ranges
-        similar_color = c
-print(similar_color)
+]
+img = PIL.Image.open("samples.png")
+img = img.convert("RGB")
+pixels = img.getdata()
+similar_colors = []
+for col in pixels:
+    min_distance = float("inf")
+    check = col
+    similar_color = None
+    for c in list_color:
+        distance = cv2.norm(c, check, cv2.NORM_L2)
+        if distance < min_distance:
+            min_distance = distance
+            similar_color = c
+    similar_colors.append(similar_color)
+print(len(similar_colors))
+# test = zip(pixels, similar_color)
+# for u in test:
+#     print(u)
+
+
 # difference = []
 # for lc in list_color:
 #     difference.append([

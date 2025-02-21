@@ -66,15 +66,17 @@ with sync_playwright() as p:
     ]
     page.locator("xpath=//html/body/div[2]/button[2]").click()
     for color in pixels:
-        ranges_tmp = float("inf")
-        for colors in list_color:
-            new_ranges = cv2.norm(colors, color, cv2.NORM_L2)
-            if new_ranges < ranges_tmp:
-                ranges_tmp = new_ranges
-                similar_color = colors
+        min_distance = float("inf")
+        check = color
+        similar_color = None
+        for color_index in range(len(list_color)):
+            new_distance = cv2.norm(list_color[color_index], color, cv2.NORM_L2)
+            if new_distance < min_distance:
+                min_distance = new_distance
+                similar_color = list_color[color_index]
                 elist_color = page.locator("xpath=//html/body/div[2]/div[10]/div[1]/div[2]")
-                elist_color.locator(f"[data-index={numpy.where(list_color == similar_color)}]").click()
-                break
+                elist_color.locator(f"[data-index=\"{color_index}\"]").click()
+        page.locator("xpath=//html/body/div[2]/div[10]/div[2]/div[2]").click()
     time.sleep(300)
     page.close()
     context.close()

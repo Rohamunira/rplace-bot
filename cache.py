@@ -1,4 +1,5 @@
 import numpy
+import math
 list_color = numpy.array([
     (0, 0, 0),
     (105, 105, 105),
@@ -38,9 +39,14 @@ for lc in list_color:
         # int(lc[2] - checks[2])
     ])
 difference = numpy.array(difference)
+difference_i = numpy.arange(len(difference))
+avg = numpy.mean(difference, axis = 1)
+# avg = avg.astype(int)
+
+difference = difference[int(avg)]
+
 for c in difference:
     print(c)
 print("----")
-difference = numpy.sort(difference, axis = 1)
-for c in difference:
+for c in numpy.sort(avg):
     print(c)

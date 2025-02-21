@@ -21,12 +21,21 @@ with sync_playwright() as p:
     )
     context = browser.new_context()
     page = context.new_page()
-    page.goto("https://rplace.live/")
+    page.goto("https://rplace.live/", timeout = 300000)
 
     # go to specified coords first
     while True:
-        print(eval(page.locator("xpath=//html/body/div[2]/div[2]").text_content().split(" ")[0]))
-        # if 
+        coords = eval(page.locator("xpath=//html/body/div[2]/div[2]").text_content().split(" ")[0])
+        if coords[0] < target_coords[0]:
+            page.keyboard.press("ArrowLeft")
+        elif coords[0] > target_coords[0]:
+            page.keyboard.press("ArrowRight")
+        if coords[1] < target_coords[1]:
+            page.keyboard.press("ArrowUp")
+        elif coords[1] > target_coords[1]:
+            page.keyboard.press("ArrowDown")
+        elif coords[1] == target_coords[1] and coords[0] == target_coords[0]:
+            break
 
     time.sleep(300)
     page.close()

@@ -1,5 +1,6 @@
 import numpy
 import math
+import cv2
 list_color = numpy.array([
     (0, 0, 0),
     (105, 105, 105),
@@ -27,8 +28,15 @@ list_color = numpy.array([
     (255, 230, 0),
     (87, 52, 0)
 ])
+similar_color = None
+ranges_tmp = float("inf")
 checks = numpy.array((73, 253, 90))
-
+for c in list_color:
+    new_ranges = cv2.norm(c, checks, cv2.NORM_L2)
+    if new_ranges < ranges_tmp:
+        ranges_tmp = new_ranges
+        similar_color = c
+print(similar_color)
 # difference = []
 # for lc in list_color:
 #     difference.append([

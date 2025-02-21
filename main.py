@@ -23,7 +23,7 @@ with sync_playwright() as p:
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://rplace.live/", timeout = 300000)
-
+    # time.sleep(2000)
     # go to specified coords first
     while True:
         coords = eval(page.locator("xpath=//html/body/div[2]/div[2]").text_content().split(" ")[0])
@@ -64,9 +64,9 @@ with sync_playwright() as p:
         (255, 230, 0),
         (87, 52, 0)
     ]
-    page.locator("xpath=//html/body/div[2]/button[2]").click()
     time.sleep(2)
     for color in pixels:
+        page.locator("xpath=//html/body/div[2]/button[2]").click()
         min_distance = float("inf")
         check = color
         similar_color = None
@@ -77,7 +77,9 @@ with sync_playwright() as p:
                 similar_color = list_color[color_index]
                 elist_color = page.locator("xpath=//html/body/div[2]/div[10]/div[1]/div[2]")
                 elist_color.locator(f"[data-index=\"{color_index}\"]").click()
-        page.locator("xpath=//html/body/div[2]/div[10]/div[2]/div[2]").click()
+                time.sleep(1)
+        page.locator("xpath=//html/body/div[2]/div[10]/div[2]/div[2]").dblclick()
+        time.sleep(1)
         page.keyboard.press("ArrowRight")
     time.sleep(300)
     page.close()

@@ -27,13 +27,20 @@ list_color = numpy.array([
     (87, 52, 0)
 ])
 checks = numpy.array((73, 253, 90))
-difference = numpy.array([])
+difference = []
 for lc in list_color:
-    numpy.append(
-        difference,
-        numpy.array([
-            lc[0] - checks[0],
-            lc[1] - checks[1],
-            lc[2] - checks[2]
-        ])
-    )
+    difference.append([
+        _ if (_ := int(lc[0] - checks[0])) > 0 else 0,
+        _ if (_ := int(lc[1] - checks[0])) > 0 else 0,
+        _ if (_ := int(lc[2] - checks[0])) > 0 else 0,
+        # int(lc[0] - checks[0]),
+        # int(lc[1] - checks[1]),
+        # int(lc[2] - checks[2])
+    ])
+difference = numpy.array(difference)
+for c in difference:
+    print(c)
+print("----")
+difference = numpy.sort(difference, axis = 1)
+for c in difference:
+    print(c)

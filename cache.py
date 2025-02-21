@@ -40,12 +40,13 @@ for lc in list_color:
     ])
 difference = numpy.array(difference)
 avg = numpy.vectorize(int)(numpy.mean(difference, axis = 1))
+point = numpy.full((len(difference), len(difference[0])), False, dtype = bool)
 difference = zip(difference, avg, list_color)
+for e in difference:
+    print(e)
 
 # difference = sorted(difference, key = lambda x: x[1]) # sorting based index 1
 
-for e in difference:
-    print(e)
 # for c in difference:
 #     print(c)
 # print("----")

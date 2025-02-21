@@ -1,2 +1,2 @@
-# rplace_bot
-auto draw image in site https://rplace.live/, my challenge for myself
+# rplace bot
+auto draw image in site https://rplace.live/, this is my challenge for myself

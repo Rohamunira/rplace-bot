@@ -65,6 +65,7 @@ with sync_playwright() as p:
         (87, 52, 0)
     ]
     page.locator("xpath=//html/body/div[2]/button[2]").click()
+    time.sleep(2)
     for color in pixels:
         min_distance = float("inf")
         check = color
@@ -77,6 +78,7 @@ with sync_playwright() as p:
                 elist_color = page.locator("xpath=//html/body/div[2]/div[10]/div[1]/div[2]")
                 elist_color.locator(f"[data-index=\"{color_index}\"]").click()
         page.locator("xpath=//html/body/div[2]/div[10]/div[2]/div[2]").click()
+        page.keyboard.press("ArrowRight")
     time.sleep(300)
     page.close()
     context.close()

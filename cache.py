@@ -28,27 +28,29 @@ list_color = numpy.array([
     (87, 52, 0)
 ])
 checks = numpy.array((73, 253, 90))
-difference = []
-for lc in list_color:
-    difference.append([
-        # _ if (_ := int(lc[0] - checks[0])) > 0 else 0,
-        # _ if (_ := int(lc[1] - checks[0])) > 0 else 0,
-        # _ if (_ := int(lc[2] - checks[0])) > 0 else 0,
-        int(lc[0] - checks[0]),
-        int(lc[1] - checks[1]),
-        int(lc[2] - checks[2])
-    ])
-difference = numpy.array(difference)
-avg = numpy.vectorize(int)(numpy.mean(difference, axis = 1))
-point = numpy.full((len(difference), len(difference[0])), False, dtype = bool)
-difference = zip(difference, avg, list_color)
-for e in difference:
-    print(e)
 
-# difference = sorted(difference, key = lambda x: x[1]) # sorting based index 1
+# difference = []
+# for lc in list_color:
+#     difference.append([
+#         # _ if (_ := int(lc[0] - checks[0])) > 0 else 0,
+#         # _ if (_ := int(lc[1] - checks[0])) > 0 else 0,
+#         # _ if (_ := int(lc[2] - checks[0])) > 0 else 0,
+#         int(lc[0] - checks[0]),
+#         int(lc[1] - checks[1]),
+#         int(lc[2] - checks[2])
+#     ])
+# difference = numpy.array(difference)
+# avg = numpy.vectorize(int)(numpy.mean(difference, axis = 1))
+# point = numpy.full((len(difference), len(difference[0])), False, dtype = bool)
+# print(numpy.min(difference, axis = 0))
+# difference = zip(difference, avg, list_color)
+# for e in difference:
+#     print(e)
 
-# for c in difference:
-#     print(c)
-# print("----")
-# for c in avg:
-#     print(c)
+# # difference = sorted(difference, key = lambda x: x[1]) # sorting based index 1
+
+# # for c in difference:
+# #     print(c)
+# # print("----")
+# # for c in avg:
+# #     print(c)

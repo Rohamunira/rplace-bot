@@ -39,14 +39,14 @@ for lc in list_color:
         # int(lc[2] - checks[2])
     ])
 difference = numpy.array(difference)
-difference_i = numpy.arange(len(difference))
-avg = numpy.mean(difference, axis = 1)
-# avg = avg.astype(int)
+avg = numpy.vectorize(int)(numpy.mean(difference, axis = 1))
+difference = zip(difference, avg, list_color)
+difference = sorted(difference, key = lambda x: x[1])
 
-difference = difference[int(avg)]
-
-for c in difference:
-    print(c)
-print("----")
-for c in numpy.sort(avg):
-    print(c)
+for e in difference:
+    print(e)
+# for c in difference:
+#     print(c)
+# print("----")
+# for c in avg:
+#     print(c)
